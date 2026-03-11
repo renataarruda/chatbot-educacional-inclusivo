@@ -6,7 +6,7 @@ load_dotenv()
 
 CHAVE_API_GOOGLE = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=CHAVE_API_GOOGLE)
-MODELO_ESCOLHIDO = "gemini-flash-latest"
+MODELO_ESCOLHIDO = "gemini-3-flash-preview"
 
 prompt_sistema = """Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
