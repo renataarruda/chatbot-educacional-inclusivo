@@ -1,10 +1,12 @@
 # Chatbot Educacional para Inclusão e Superdotação
 
-Este projeto tem como objetivo desenvolver um **chatbot educacional baseado em Inteligência Artificial** para o **Instituto Criativo**, capaz de fornecer **orientações iniciais sobre educação inclusiva, altas habilidades e superdotação**.
+Este projeto tem como objetivo desenvolver um **chatbot educacional baseado em Inteligência Artificial** para o [**Instituto Criativo**](https://institutocriativo.com.br/), capaz de fornecer **orientações iniciais sobre educação inclusiva, altas habilidades e superdotação**.
 
 A solução busca apoiar **pais, professores e gestores escolares** no esclarecimento de dúvidas frequentes relacionadas à inclusão educacional, oferecendo respostas acessíveis, informativas e contextualizadas.
 
 O projeto está sendo desenvolvido como **Projeto Aplicado** do curso de Sistemas de Informação da **Faculdade XP Educação**, utilizando conceitos de **Design Thinking, Inteligência Artificial e desenvolvimento de software com Python**.
+
+Como apoio, este projeto segue algumas instruções sugeridas no curso [**Formação Gemini e Python**](https://www.alura.com.br/formacao-gemini-python), da Alura.
 
 ---
 
@@ -92,7 +94,7 @@ Atualmente o projeto encontra-se na **Sprint 1 – Estruturação e Base Técnic
 - integração inicial com API de IA;
 - interface simples de testes no terminal;
 - organização do backlog do projeto.
-- 
+
 ---
 
 # Licença
