@@ -1,0 +1,13 @@
+# ambiente virtual
+CURSO_GEMINI/
+venv/
+
+# variáveis de ambiente
+.env
+
+# python
+__pycache__/
+*.pyc
+
+# vscode
+.vscode/
