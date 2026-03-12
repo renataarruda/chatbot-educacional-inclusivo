@@ -9,7 +9,7 @@ load_dotenv()
 CHAVE_API_GOOGLE = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=CHAVE_API_GOOGLE)
 MODELO_ESCOLHIDO = "gemini-3-flash-preview"
-MODO_DEBUG = False
+MODO_DEBUG = True
 
 prompt_sistema = """Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
@@ -26,9 +26,12 @@ Regras de resposta:
 7. Não responda perguntas sobre assuntos que não estejam relacionados à educação inclusiva, altas habilidades e superdotação.
 
 Quando responder:
+Sempre considere o perfil do usuário informado no início da pergunta.
+
 - Se a pergunta for de um pai ou mãe, utilize linguagem simples e acolhedora. Utilize emojis nas respostas.
 - Se a pergunta for de um professor, ofereça sugestões pedagógicas práticas.
 - Se a pergunta for de um gestor, foque em estratégias institucionais ou organizacionais.
+- Se a pergunta for de um outro usuário, utilize linguagem simples e foque em respostas de conhecimento geral.
 
 Sempre que apropriado, sugira que a pessoa procure profissionais especializados ou apoio pedagógico.
 
@@ -44,6 +47,7 @@ Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuá
 
 def criar_modelo():
     try:
+        MODELO_ESCOLHIDO = "gemini-3-flash-preview"
         return genai.GenerativeModel(
         model_name=MODELO_ESCOLHIDO,
         system_instruction=prompt_sistema,
@@ -53,7 +57,7 @@ def criar_modelo():
         MODELO_ESCOLHIDO = "gemini-3-flash-preview"
         print(f"Erro no nome do modelo: {e}")
 
-def gerar_resposta(llm, pergunta):
+def gerar_resposta(llm, pergunta, perfil):
     if MODO_DEBUG:
         print("[DEBUG] Usando resposta simulada")
         if "superdotado" in pergunta.lower():
@@ -64,25 +68,29 @@ def gerar_resposta(llm, pergunta):
 
         return "Mock: resposta genérica do assistente educacional."
     try:
-        resposta = llm.generate_content(pergunta)
+        pergunta_com_contexto = f"""
+Perfil do usuário: {perfil}
+
+Pergunta do usuário:
+{pergunta}
+"""
+        resposta = llm.generate_content(pergunta_com_contexto)
         time.sleep(2)
         return resposta.text
     except ResourceExhausted:
         print("Limite da API atingido. Tente novamente mais tarde.")
 
-def iniciar_chat(llm, mensagem_inicial):
-
+def iniciar_chat(llm, mensagem_inicial, perfil):
     print(mensagem_inicial)
 
     while True:
-
         pergunta = input("\nVocê: ")
 
         if pergunta.lower() == "sair":
             finalizar_chatbot()
             break
 
-        resposta = gerar_resposta(llm, pergunta)
+        resposta = gerar_resposta(llm, pergunta, perfil)
 
         print("-" * 50)
         print("Assistente:", resposta)
@@ -122,21 +130,21 @@ Digite aqui: """)
         iniciar_chat(llm, """
 Que alegria ter você aqui!
 Fique à vontade para contar sua dúvida.
-""")
+""", "mãe, pai ou responsável")
     elif opcao_escolhida == "2":
         iniciar_chat(llm, """
 Olá professor(a)!
 Qual é sua dúvida pedagógica hoje?
-""")
+""", "professor(a)")
     elif opcao_escolhida == "3":
         iniciar_chat(llm,"""
 Olá gestor(a)!
 Como posso ajudar na inclusão escolar?
-""")
+""", "gestor(a) escolar")
     elif opcao_escolhida == "4":
         iniciar_chat(llm,"""
 Olá! Qual é sua dúvida sobre inclusão ou altas habilidades?
-""")
+""", "outro usuário")
     elif opcao_escolhida == "5":
         finalizar_chatbot()
         return
