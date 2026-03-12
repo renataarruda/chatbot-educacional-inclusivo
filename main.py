@@ -1,13 +1,15 @@
 import os
+import time
 import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted, NotFound
 from dotenv import load_dotenv
 
 load_dotenv()
 
 CHAVE_API_GOOGLE = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=CHAVE_API_GOOGLE)
-MODELO_ESCOLHIDO = "gemini-3-flash-preview"
-MODO_DEBUG = True
+MODELO_ESCOLHIDO = "gemini-3-flash-previewzzzzzz"
+MODO_DEBUG = False
 
 prompt_sistema = """Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
@@ -41,11 +43,15 @@ Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuá
 # }
 
 def criar_modelo():
-    return genai.GenerativeModel(
-    model_name=MODELO_ESCOLHIDO,
-    system_instruction=prompt_sistema,
-    # generation_config=configuracao_modelo
-)
+    try:
+        return genai.GenerativeModel(
+        model_name=MODELO_ESCOLHIDO,
+        system_instruction=prompt_sistema,
+        # generation_config=configuracao_modelo
+    )
+    except NotFound as e:
+        MODELO_ESCOLHIDO = "gemini-3-flash-preview"
+        print(f"Erro no nome do modelo: {e}")
 
 def gerar_resposta(llm, pergunta):
     if MODO_DEBUG:
@@ -57,9 +63,12 @@ def gerar_resposta(llm, pergunta):
             return "Mock: A inclusão escolar envolve adaptar práticas pedagógicas para atender diferentes necessidades. Gostaria de fazer outra pergunta?"
 
         return "Mock: resposta genérica do assistente educacional."
-    
-    resposta = llm.generate_content(pergunta)
-    return resposta.text
+    try:
+        resposta = llm.generate_content(pergunta)
+        time.sleep(2)
+        return resposta.text
+    except ResourceExhausted:
+        print("Limite da API atingido. Tente novamente mais tarde.")
 
 def iniciar_chat(llm, mensagem_inicial):
 
