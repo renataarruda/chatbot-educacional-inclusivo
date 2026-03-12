@@ -33,6 +33,8 @@ Sempre considere o perfil do usuário informado no início da pergunta.
 - Se a pergunta for de um gestor, foque em estratégias institucionais ou organizacionais.
 - Se a pergunta for de um outro usuário, utilize linguagem simples e foque em respostas de conhecimento geral.
 
+Evite repetir seções ou títulos na resposta.
+
 Sempre que apropriado, sugira que a pessoa procure profissionais especializados ou apoio pedagógico.
 
 Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuário a entender melhor a situação apresentada."""
@@ -44,6 +46,29 @@ Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuá
 #     "max_output_tokens": 8192,
 #     "response_mime_type": "text/plain"
 # }
+
+materiais_recomendados = {
+    "superdotação": "Você pode saber mais sobre altas habilidades no portal do MEC: https://www.gov.br/mec/pt-br/pneei",
+    "inclusão": "Uma boa referência sobre educação inclusiva é o material do Instituto Rodrigo Mendes: https://institutorodrigomendes.org.br",
+    "legislação": "Para conhecer o que diz a lei, acesse o Capítulo V da Lei de Diretrizes e Bases: https://www.planalto.gov.br/ccivil_03/leis/l9394.htm",
+    "superdotado": "Consulte o Guia para Superdotados, Famílias e Profissionais no EduCAPES para mais orientações: https://educapes.capes.gov.br/",
+    "diversidade": "O Portal DIVERSA oferece excelentes materiais sobre gestão escolar inclusiva: https://diversa.org.br/"
+}
+
+def sugestao_material_complementar(pergunta):
+        
+        pergunta = pergunta.lower()
+
+        if "superdot" in pergunta:
+            return materiais_recomendados["superdotação"]
+        if "inclusiv" in pergunta or "inclusão" in pergunta:
+            return materiais_recomendados["inclusão"]
+        if "lei" in pergunta:
+            return materiais_recomendados["legislação"]
+        if "diversidade" in pergunta:
+            return materiais_recomendados["diversidade"]
+        return None
+
 
 def criar_modelo():
     try:
@@ -60,13 +85,22 @@ def criar_modelo():
 def gerar_resposta(llm, pergunta, perfil):
     if MODO_DEBUG:
         print("[DEBUG] Usando resposta simulada")
-        if "superdotado" in pergunta.lower():
-            return "Mock: Alunos superdotados se beneficiam de atividades abertas e investigativas. Gostaria de fazer outra pergunta?"
+        if "superdot" in pergunta.lower():
+            resposta = "Mock: Alunos superdotados se beneficiam de atividades abertas e investigativas. Gostaria de fazer outra pergunta?"
 
-        if "inclusão" in pergunta.lower():
-            return "Mock: A inclusão escolar envolve adaptar práticas pedagógicas para atender diferentes necessidades. Gostaria de fazer outra pergunta?"
+        elif "inclusão" in pergunta.lower():
+            resposta = "Mock: A inclusão escolar envolve adaptar práticas pedagógicas para atender diferentes necessidades. Gostaria de fazer outra pergunta?"
 
-        return "Mock: resposta genérica do assistente educacional."
+        else: 
+            resposta ="Mock: resposta genérica do assistente educacional."
+        
+        material = sugestao_material_complementar(pergunta)
+
+        if material:
+            resposta += "\n\n" + material
+
+        return resposta
+    
     try:
         pergunta_com_contexto = f"""
 Perfil do usuário: {perfil}
@@ -74,9 +108,16 @@ Perfil do usuário: {perfil}
 Pergunta do usuário:
 {pergunta}
 """
-        resposta = llm.generate_content(pergunta_com_contexto)
+        resposta = llm.generate_content(pergunta_com_contexto).text
         time.sleep(2)
-        return resposta.text
+
+        material = sugestao_material_complementar(pergunta)
+
+        if material:
+            resposta += "\n\n" + material
+
+        return resposta
+    
     except ResourceExhausted:
         print("Limite da API atingido. Tente novamente mais tarde.")
 
