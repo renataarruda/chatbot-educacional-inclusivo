@@ -9,7 +9,7 @@ load_dotenv()
 CHAVE_API_GOOGLE = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=CHAVE_API_GOOGLE)
 MODELO_ESCOLHIDO = "gemini-3-flash-preview"
-MODO_DEBUG = True
+MODO_DEBUG = False
 
 prompt_sistema = """Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
@@ -108,15 +108,19 @@ Perfil do usuário: {perfil}
 Pergunta do usuário:
 {pergunta}
 """
-        resposta = llm.generate_content(pergunta_com_contexto).text
-        time.sleep(2)
+        if pergunta:
+            resposta = llm.generate_content(pergunta_com_contexto).text
+            time.sleep(2)
 
-        material = sugestao_material_complementar(pergunta)
+            material = sugestao_material_complementar(pergunta)
 
-        if material:
-            resposta += "\n\n" + material
+            if material:
+                resposta += "\n\n" + material
 
-        return resposta
+            return resposta
+        else:
+            finalizar_chatbot()
+            exit()
     
     except ResourceExhausted:
         print("Limite da API atingido. Tente novamente mais tarde.")
