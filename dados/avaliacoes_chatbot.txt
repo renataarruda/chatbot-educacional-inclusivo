@@ -1,0 +1,79 @@
+Perfil: pai ou mãe
+Satisfação: boa
+Comentário: A resposta me ajudou a entender melhor o que pode ser superdotação e me deu ideias de como conversar com a escola.
+
+Perfil: pai ou mãe
+Satisfação: neutro
+Comentário: A explicação foi interessante, mas eu gostaria de exemplos mais concretos para diferenciar curiosidade de altas habilidades.
+
+Perfil: professor
+Satisfação: boa
+Comentário: A resposta trouxe sugestões pedagógicas úteis para observar alunos que fazem muitas perguntas e terminam atividades rápido.
+
+Perfil: gestor escolar
+Satisfação: neutro
+Comentário: A resposta explicou o tema, mas poderia mencionar mais claramente como a escola pode identificar esses alunos.
+
+Perfil: pai ou mãe
+Satisfação: boa
+Comentário: Foi útil saber que existe avaliação específica para superdotação. A resposta foi clara e tranquilizadora.
+
+Perfil: pai ou mãe
+Satisfação: neutro
+Comentário: Achei interessante a explicação, mas ainda fiquei com dúvidas sobre como lidar com dificuldades sociais.
+
+Perfil: pai ou mãe
+Satisfação: boa
+Comentário: Gostei de saber que a escola pode fazer adaptações e oferecer desafios maiores para manter o interesse da criança.
+
+Perfil: professor
+Satisfação: boa
+Comentário: As sugestões de adaptação de atividades foram úteis e fáceis de aplicar em sala de aula.
+
+Perfil: professor
+Satisfação: neutro
+Comentário: As estratégias pedagógicas foram interessantes, mas poderiam ser mais detalhadas.
+
+Perfil: professor
+Satisfação: boa
+Comentário: A resposta ajudou a refletir sobre como lidar com alunos que demonstram conhecimento muito avançado.
+
+Perfil: professor
+Satisfação: neutro
+Comentário: Gostei da ideia de manter o aluno engajado, mas senti falta de exemplos práticos.
+
+Perfil: professor
+Satisfação: boa
+Comentário: A explicação sobre metodologias para alunos superdotados foi clara e inspiradora.
+
+Perfil: professor
+Satisfação: ruim
+Comentário: A resposta foi muito genérica e não ajudou a diferenciar indisciplina de comportamento relacionado à superdotação.
+
+Perfil: professor
+Satisfação: boa
+Comentário: As orientações sobre registro de observações pedagógicas foram úteis para documentar comportamentos relevantes.
+
+Perfil: gestor escolar
+Satisfação: boa
+Comentário: A resposta apresentou boas ideias sobre como identificar alunos com altas habilidades na escola.
+
+Perfil: gestor escolar
+Satisfação: neutro
+Comentário: As práticas institucionais mencionadas foram interessantes, mas faltaram exemplos concretos.
+
+Perfil: gestor escolar
+Satisfação: boa
+Comentário: Gostei das sugestões para orientar professores que ainda não têm formação em educação inclusiva.
+
+Perfil: gestor escolar
+Satisfação: boa
+Comentário: Foi útil saber que a legislação brasileira prevê atendimento educacional especializado para alunos superdotados.
+
+Perfil: gestor escolar
+Satisfação: neutro
+Comentário: A resposta trouxe boas ideias, mas poderia detalhar melhor como estruturar o plano pedagógico.
+
+Perfil: gestor escolar
+Satisfação: boa
+Comentário: A explicação sobre como a escola pode apoiar as famílias foi clara e acolhedora.
