@@ -33,7 +33,7 @@ Sempre considere o perfil do usuário informado no início da pergunta.
 - Se a pergunta for de um gestor, foque em estratégias institucionais ou organizacionais.
 - Se a pergunta for de um outro usuário, utilize linguagem simples e foque em respostas de conhecimento geral.
 
-Evite repetir seções ou títulos na resposta.
+Não repita respostas, seções e títulos.
 
 Sempre que apropriado, sugira que a pessoa procure profissionais especializados ou apoio pedagógico.
 
@@ -69,7 +69,6 @@ def sugestao_material_complementar(pergunta):
             return materiais_recomendados["diversidade"]
         return None
 
-
 def criar_modelo():
     try:
         MODELO_ESCOLHIDO = "gemini-3-flash-preview"
@@ -81,6 +80,21 @@ def criar_modelo():
     except NotFound as e:
         MODELO_ESCOLHIDO = "gemini-3-flash-preview"
         print(f"Erro no nome do modelo: {e}")
+
+def coletar_feedback(perfil):
+    print("\nAntes de encerrar, sua opinião é muito importante.")
+
+    feedback = input("As respostas do chatbot foram úteis para você? (sim/não): ")
+
+    comentario = input("Se quiser, deixe um comentário ou sugestão: ")
+
+    with open("dados/feedback_chatbot.txt", "a", encoding="utf-8") as f:
+        f.write(f"Perfil: {perfil}\n")
+        f.write(f"Satisfação: {feedback}\n")
+        f.write(f"Comentário: {comentario}\n")
+        f.write("-" * 40 + "\n")
+
+    print("\nAgradecemos pelo seu feedback! Ele ajuda a melhorar o nosso serviço.")
 
 def gerar_resposta(llm, pergunta, perfil):
     if MODO_DEBUG:
@@ -98,7 +112,6 @@ def gerar_resposta(llm, pergunta, perfil):
 
         if material:
             resposta += "\n\n" + material
-
         return resposta
     
     try:
@@ -116,7 +129,6 @@ Pergunta do usuário:
 
             if material:
                 resposta += "\n\n" + material
-
             return resposta
         else:
             finalizar_chatbot()
@@ -131,7 +143,8 @@ def iniciar_chat(llm, mensagem_inicial, perfil):
     while True:
         pergunta = input("\nVocê: ")
 
-        if pergunta.lower() == "sair":
+        if pergunta.lower() in ["sair", "nao", "não"]:
+            coletar_feedback(perfil)
             finalizar_chatbot()
             break
 
