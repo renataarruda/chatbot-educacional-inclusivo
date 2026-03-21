@@ -1,13 +1,43 @@
 @import url(_reset.css);
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
+:root {
+    --font-size: 16px;
+
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+
+    --primary: #ff244a; /* 🔴 vermelho */
+    --secondary: #0063ff; /* 🔵 azul */
+    --highlight: #ffcf3a; /* 🟡 amarelo */
+
+    --border: rgba(0, 0, 0, 0.1);
+
+    --radius: 10px;
+
+    /* 🎯 COMPONENTES */
+    --chat-bot-bg: #f3f4f6;
+    --chat-user-bg: var(--secondary);
+
+    --input-bg: #f3f3f5;
+    --input-border: #e5e7eb;
+
+    --send-button: var(--secondary);
+}
+
+html {
+    font-size: var(--font-size);
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    background: linear-gradient(to bottom, #01080E, #041832);
-    color: #FFFFFF;
+
+    background: var(--background);
+    color: var(--foreground);
+
     font-family: 'Inter', sans-serif;
 }
 
@@ -25,8 +55,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     height: 5rem;
-    border-bottom: 1px solid #144480;
+
+    background: linear-gradient(135deg, #ff244a, #ff5c7a);
+    color: white;
+
+    border-bottom: none;
 }
 
 .cabecalho__acoes {
@@ -64,10 +99,15 @@ body {
 .chat__bolha {
     max-width: calc(100% - 3.5rem);
     width: fit-content;
+
     padding: 1.5rem;
-    border-radius: 10px;
+
+    border-radius: var(--radius);
+
     font-size: 1.375rem;
+
     margin: 1.5rem 0;
+
     position: relative;
 }
 
@@ -78,7 +118,15 @@ body {
 }
 
 .chat__bolha--bot {
-    background-color: #4A42B8;
+    background-color: var(--chat-bot-bg);
+    color: var(--foreground);
+}
+
+.chat__bolha--usuario {
+    background-color: var(--chat-user-bg);
+    color: white;
+
+    align-self: flex-end;
 }
 
 .chat__bolha--bot::after {
@@ -95,11 +143,6 @@ body {
     background-image: url(../img/icone-chatbot.svg);
     background-repeat: no-repeat;
     background-position: center;
-}
-
-.chat__bolha--usuario {
-    border: 1px solid #7B71FF;
-    align-self: flex-end;
 }
 
 .chat__bolha--usuario::before {
@@ -120,24 +163,28 @@ body {
 
 .entrada {
     height: 10rem;
+
     position: relative;
+
     display: flex;
     gap: 1.5rem;
-    justify-content: stretch;
+
     align-items: center;
-    border-top: 1px solid #144480;
+
+    border-top: 1px solid var(--border);
 }
 
 .entrada__container {
     display: flex;
     gap: 0.8rem;
     justify-content: space-between;
-    width: 100%;
 
+    width: 100%;
     padding: 0 0.5rem;
 
-    background-color: #144480;
-    border: 1px solid #0C305C;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+
     border-radius: 4rem;
 }
 
@@ -146,13 +193,15 @@ body {
     width: 100%;
 
     background-color: transparent;
+
     font-size: 1.375rem;
-    color: #FFFFFF;
+    color: var(--foreground);
+
     padding-left: 20px;
 }
 
 .entrada__input::placeholder {
-    color: #FFFFFF;
+    color: #999;
 }
 
 .entrada__enviar-audio {
@@ -163,27 +212,37 @@ body {
     height: 4rem;
     width: 4rem;
 
-    background-color: #1C5296;
-    border: 1px solid #0C305C;
+    background-color: var(--send-button);
+    border: none;
+
     border-radius: 50%;
 }
 
-.entrada__feedback {
-    position: absolute;
-    bottom: 23px;
-    right: calc(2rem + 5.5rem);
-}
+.botao-flutuante {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
 
-@media screen and (min-width: 1400px) {
-    .entrada__feedback {
-        right: calc((100vw - 1200px) / 2 + 5.5rem);
-    }
+    height: 4.5rem;
+    width: 4.5rem;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ff244a, #ff5c7a);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .icone {
     display: inline-block;
+
     height: 4rem;
     width: 4rem;
+
     background-position: center;
     background-repeat: no-repeat;
 }
