@@ -21,11 +21,11 @@ async function enviarMensagem() {
         headers: {
         "Content-Type": "application/json",
         },
-        body: JSON.stringify({'msg':mensagem, perfil: "pai"}),
+        body: JSON.stringify({'msg':mensagem, perfil: " "}),
     });
     const textoDaResposta = await resposta.text();
     console.log(textoDaResposta);
-    novaBolhaBot.innerHTML = textoDaResposta.replace(/\n/g, '<br>');
+    novaBolhaBot.innerHTML = marked.parse(textoDaResposta);
     vaiParaFinalDoChat();
 }
 
