@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 from time import sleep
 from analisador_sentimentos import carrega, salva
-from selecionar_persona import personas
+from selecionar_persona import personas, selecionar_persona
 
 load_dotenv()
 
@@ -23,7 +23,7 @@ def bot(prompt):
 
     while True:
         try:
-            personalidade = personas["responsavel"]
+            personalidade = personas[selecionar_persona(prompt)]
 
             prompt_do_sistema = f"""Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
@@ -57,15 +57,15 @@ def bot(prompt):
             {personalidade}
             """
 
-            # configuracao_modelo = {
-            #     "temperature" : 0.1,
-            #     "max_output_tokens" : 8192
-            # }
+            configuracao_modelo = {
+                "temperature" : 0.1,
+                "max_output_tokens" : 8192
+            }
 
             llm = genai.GenerativeModel(
                 model_name=MODELO_ESCOLHIDO,
                 system_instruction=prompt_do_sistema,
-                # generation_config=configuracao_modelo
+                generation_config=configuracao_modelo
             )
 
             resposta = llm.generate_content(prompt)

@@ -14,14 +14,14 @@ async function enviarMensagem() {
     let novaBolhaBot = criaBolhaBot();
     chat.appendChild(novaBolhaBot);
     vaiParaFinalDoChat();
-    novaBolhaBot.innerHTML = "Analisando ..."
+    novaBolhaBot.innerHTML = "Analisando..."
     
     const resposta = await fetch("http://127.0.0.1:5000/chat", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
         },
-        body: JSON.stringify({'msg':mensagem}),
+        body: JSON.stringify({'msg':mensagem, perfil: "pai"}),
     });
     const textoDaResposta = await resposta.text();
     console.log(textoDaResposta);
