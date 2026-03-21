@@ -52,20 +52,25 @@ def bot(prompt):
             Sempre que apropriado, sugira que a pessoa procure profissionais especializados ou apoio pedagógico.
 
             Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuário a entender melhor a situação apresentada.
+
+            Regras de formatação da resposta:
+
+            8. NÃO utilize títulos com "##" ou "###".
+            9. Evite excesso de formatação em Markdown.
+            10. Use no máximo:
+            - negrito (**texto**) para destacar pontos importantes
+            - listas simples com "-" quando necessário
+            11. Prefira respostas em formato de conversa, como se estivesse falando diretamente com o usuário.
+            12. Evite respostas muito longas. Seja claro e objetivo.
+            13. Responda em no máximo 5 a 8 linhas.
             
             # PERSONALIDADE
             {personalidade}
             """
 
-            configuracao_modelo = {
-                "temperature" : 0.1,
-                "max_output_tokens" : 8192
-            }
-
             llm = genai.GenerativeModel(
                 model_name=MODELO_ESCOLHIDO,
                 system_instruction=prompt_do_sistema,
-                generation_config=configuracao_modelo
             )
 
             resposta = llm.generate_content(prompt)
@@ -77,12 +82,17 @@ def bot(prompt):
             
             sleep(50)
 
+def limpar_formatacao(texto):
+    texto = texto.replace("###", "")
+    texto = texto.replace("##", "")
+    return texto
 
 @app.route("/chat", methods=["POST"])
 def chat():
     prompt  = request.json["msg"]
     resposta = bot(prompt)
-    return resposta
+
+    return limpar_formatacao(resposta.text)
 
 @app.route("/")
 def home():
