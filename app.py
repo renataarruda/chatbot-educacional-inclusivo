@@ -2,6 +2,7 @@ from flask import Flask,render_template, request, Response
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
+import time
 from time import sleep
 from analisador_sentimentos import carrega, salva
 from selecionar_persona import personas, selecionar_persona
@@ -89,10 +90,22 @@ def limpar_formatacao(texto):
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    prompt  = request.json["msg"]
+    inicio = time.time()
+
+    prompt = request.json["msg"]
     resposta = bot(prompt)
 
+    fim = time.time()
+    tempo_resposta = fim - inicio
+
+    print(f"Tempo de resposta: {tempo_resposta:.2f}s")
+
     return limpar_formatacao(resposta.text)
+
+    # return {
+    #         "resposta": resposta,
+    #         "tempo": tempo_resposta
+    #     }
 
 @app.route("/")
 def home():
