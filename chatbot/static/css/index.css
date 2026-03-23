@@ -1,0 +1,565 @@
+@import url(_reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+:root {
+    --font-size: 16px;
+
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+
+    --primary: #ff244a;
+    --secondary: #0063ff;
+    --highlight: #ffcf3a;
+
+    --border: rgba(0, 0, 0, 0.1);
+
+    --radius: 10px;
+    --chat-bot-bg: #f3f4f6;
+    --chat-user-bg: var(--secondary);
+
+    --input-bg: #f3f3f5;
+    --input-border: #e5e7eb;
+
+    --send-button: var(--secondary);
+}
+
+html {
+    font-size: var(--font-size);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+
+    background: var(--background);
+    color: var(--foreground);
+
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    padding: 0 2rem;
+}
+
+@media screen and (min-width: 1400px) {
+    .container {
+        padding: 0 calc((100vw - 1200px) / 2);
+    }
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 5rem;
+
+    background: linear-gradient(135deg, #ff244a, #ff5c7a);
+    color: white;
+
+    border-bottom: none;
+}
+
+.cabecalho__acoes {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media screen and (min-width: 1400px) {
+    .cabecalho__acoes {
+        gap: 2.8125rem;
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 10rem - 5rem);
+    padding: 1rem 0;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.persona-select {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+
+    background-color: white;
+    color: #333;
+
+    cursor: pointer;
+}
+
+.chat::-webkit-scrollbar {
+    display: none;
+}
+
+.chat__bolha {
+    max-width: calc(100% - 3.5rem);
+    width: fit-content;
+
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 1rem;
+    border-radius: 1.25rem;;
+
+    font-size: 1.375rem;
+
+    margin: 1.5rem 0;
+
+    position: relative;
+}
+
+@media screen and (min-width: 1400px){
+    .chat__bolha {
+        max-width: 60%;
+    }
+}
+
+.chat__bolha--bot {
+    background-color: var(--chat-bot-bg);
+    color: var(--foreground);
+}
+
+.chat__bolha--usuario {
+    background-color: var(--chat-user-bg);
+    color: white;
+
+    align-self: flex-end;
+}
+
+.chat__bolha--bot::after {
+    content: "";
+    display: block;
+
+    height: 2.5rem;
+    width: 2.5rem;
+
+    position: absolute;
+    top: 0;
+    right: calc(-2.5rem - 1rem);
+
+    background-image: url(../img/icone-chatbot.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.chat__bolha--usuario::before {
+    content: "";
+    display: block;
+
+    height: 2.5rem;
+    width: 2.5rem;
+
+    position: absolute;
+    top: 0;
+    left: calc(-2.5rem - 1rem);
+
+    background-image: url(../img/icone-perfil.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.entrada {
+    height: 10rem;
+
+    position: relative;
+
+    display: flex;
+    gap: 1.5rem;
+
+    align-items: center;
+
+    border-top: 1px solid var(--border);
+}
+
+.entrada__container {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 0 0.5rem;
+
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+
+    border-radius: 4rem;
+}
+
+.entrada__input {
+    height: 4rem;
+    width: 100%;
+
+    background-color: transparent;
+
+    font-size: 1.375rem;
+    color: var(--foreground);
+
+    padding-left: 20px;
+}
+
+.entrada__input::placeholder {
+    color: #999;
+}
+
+.entrada__enviar-audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 4rem;
+    width: 4rem;
+
+    background-color: var(--send-button);
+    border: none;
+
+    border-radius: 50%;
+}
+
+.botao-flutuante {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+
+    height: 4.5rem;
+    width: 4.5rem;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ff244a, #ff5c7a);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.icone {
+    display: inline-block;
+
+    height: 4rem;
+    width: 4rem;
+
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.icone--enviar-audio {
+    background-image: url(../img/icone-audio.svg);
+}
+
+.icone--mais-opcoes {
+    background-image: url(../img/icone-mais.svg);
+}
+
+.icone--enviar-mensagem {
+    background-image: url(../img/icone-enviar.svg);
+}
+
+/* ── Colar no seu index.css, após os estilos existentes ── */
+
+/* Container dos botões de persona */
+.persona-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0.5rem 0 1.5rem;
+    padding-left: 0;
+}
+
+/* Cada botão de persona */
+.persona-btn {
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+
+    border-radius: 4rem;
+    padding: 0.5rem 1.25rem;
+
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.persona-btn:hover {
+    background-color: var(--secondary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 99, 255, 0.25);
+}
+
+.persona-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Campo de entrada e botões desabilitados (antes da persona ser escolhida) */
+.entrada__input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+#botao-enviar:disabled,
+#mais_arquivo:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Colar no final do seu index.css
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Botão de avaliação no cabeçalho ──────────────────────────── */
+.cabecalho__feedback {
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid white;
+
+    border-radius: 4rem;
+    padding: 0.4rem 1.1rem;
+
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cabecalho__feedback:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* ── Botões de persona ────────────────────────────────────────── */
+.persona-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.persona-btn {
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+
+    border-radius: 4rem;
+    padding: 0.5rem 1.25rem;
+
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease,
+                transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.persona-btn:hover {
+    background-color: var(--secondary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 99, 255, 0.25);
+}
+
+.persona-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ── Estados desabilitados ────────────────────────────────────── */
+.entrada__input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+#botao-enviar:disabled,
+#mais_arquivo:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Modal overlay ────────────────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+/* ── Modal box ────────────────────────────────────────────────── */
+.modal {
+    background: white;
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: min(90%, 440px);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    animation: modalEntrar 0.25s ease;
+}
+
+@keyframes modalEntrar {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal__fechar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 50%;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.modal__fechar:hover {
+    background-color: var(--chat-bot-bg);
+    color: var(--foreground);
+}
+
+.modal__titulo {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--foreground);
+    margin: 0;
+}
+
+.modal__descricao {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+/* ── Opções de satisfação ─────────────────────────────────────── */
+.modal__satisfacao {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.satisfacao-btn {
+    flex: 1;
+    padding: 0.6rem 0;
+
+    background-color: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: var(--radius);
+
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.satisfacao-btn:hover {
+    border-color: var(--secondary);
+}
+
+.satisfacao-btn.ativo {
+    border-color: var(--secondary);
+    background-color: rgba(0, 99, 255, 0.08);
+    font-weight: 500;
+}
+
+/* ── Textarea de comentário ───────────────────────────────────── */
+.modal__comentario {
+    width: 100%;
+    resize: vertical;
+
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--foreground);
+
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.modal__comentario:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.modal__comentario::placeholder {
+    color: #aaa;
+}
+
+/* ── Botão de enviar feedback ─────────────────────────────────── */
+.modal__enviar {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4rem;
+
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.modal__enviar:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+/* ── Mensagem de confirmação ──────────────────────────────────── */
+.modal__confirmacao {
+    text-align: center;
+    font-size: 1rem;
+    color: #2e7d32;
+    margin: 0;
+}
+
+.modal__confirmacao[hidden] {
+    display: none;
+}

@@ -39,13 +39,13 @@ Sempre que apropriado, sugira que a pessoa procure profissionais especializados 
 
 Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuário a entender melhor a situação apresentada."""
 
-# configuracao_modelo = {
-#     "temperature" : 2.0,
-#     "top_p": 0.9,
-#     "top_k": 64,
-#     "max_output_tokens": 8192,
-#     "response_mime_type": "text/plain"
-# }
+configuracao_modelo = {
+    "temperature" : 2.0,
+    "top_p": 0.9,
+    "top_k": 64,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain"
+}
 
 materiais_recomendados = {
     "superdotação": "Você pode saber mais sobre altas habilidades no portal do MEC: https://www.gov.br/mec/pt-br/pneei",

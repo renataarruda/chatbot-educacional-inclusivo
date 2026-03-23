@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <header class="cabecalho container">
+        <img src="{{ url_for('static', filename='img/logo-chatbot.svg') }}" alt="Logo Chatbot">
+        <!-- Botão de feedback — aparece após a persona ser escolhida -->
+        <button class="cabecalho__feedback" id="abrir-feedback" hidden>
+            Avaliar ✦
+        </button>
+    </header>
+
+    <main class="main">
+        <section class="chat container" id="chat">
+            <p class="chat__bolha chat__bolha--bot">
+                Olá! Seja muito bem-vindo(a)! <br/><br/>
+                Sou o seu assistente educacional especializado em educação inclusiva, com foco em Altas Habilidades e Superdotação.<br/><br/>
+                Meu papel é oferecer orientações, esclarecer dúvidas e ajudar você a entender melhor como apoiar a inclusão de crianças e jovens com esse perfil.<br/><br/>
+                Antes de começar, me diga: <strong>quem é você?</strong>
+            </p>
+
+            <div class="persona-opcoes" id="persona-opcoes">
+                <button class="persona-btn" data-persona="pai">👨 Pai</button>
+                <button class="persona-btn" data-persona="mae">👩 Mãe</button>
+                <button class="persona-btn" data-persona="responsavel">👪 Responsável</button>
+                <button class="persona-btn" data-persona="gestor">🏫 Gestor</button>
+                <button class="persona-btn" data-persona="professor">📚 Professor</button>
+                <button class="persona-btn" data-persona="outro">🙋 Outro</button>
+            </div>
+        </section>
+
+        <section class="entrada container">
+            <div class="entrada__container">
+                <button id="mais_arquivo" aria-label="Botão de mais opções" disabled>
+                    <i class="icone icone--mais-opcoes"></i>
+                </button>
+                <input type="text" class="entrada__input" placeholder="Primeiro, escolha seu perfil acima..." id="input" disabled>
+                <button aria-label="Botão de enviar" id="botao-enviar" disabled>
+                    <i class="icone icone--enviar-mensagem"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Modal de feedback ─────────────────────────────────────── -->
+    <div class="modal-overlay" id="modal-feedback" hidden>
+        <div class="modal">
+            <button class="modal__fechar" id="fechar-feedback" aria-label="Fechar">✕</button>
+            <h2 class="modal__titulo">Sua opinião importa 💬</h2>
+            <p class="modal__descricao">As respostas do assistente foram úteis para você?</p>
+
+            <div class="modal__satisfacao" id="satisfacao-opcoes">
+                <button class="satisfacao-btn" data-valor="sim">👍 Sim</button>
+                <button class="satisfacao-btn" data-valor="parcialmente">🤔 Parcialmente</button>
+                <button class="satisfacao-btn" data-valor="nao">👎 Não</button>
+            </div>
+
+            <textarea
+                class="modal__comentario"
+                id="comentario-feedback"
+                placeholder="Deixe um comentário ou sugestão (opcional)..."
+                rows="3"
+            ></textarea>
+
+            <button class="modal__enviar" id="enviar-feedback">Enviar avaliação</button>
+            <p class="modal__confirmacao" id="confirmacao-feedback" hidden>
+                ✅ Obrigado pelo seu feedback!
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
