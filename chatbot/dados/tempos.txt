@@ -1,3 +1,8 @@
-0.0
-0.00833582878112793 // debug
-7.921631813049316 // llm
+{'persona': 'pai', 'tempo_segundos': 10.3} // Resposta llm
+{'persona': 'pai', 'tempo_segundos': 5.31} // Olá
+{'persona': 'pai', 'tempo_segundos': 5.54} // Sair
+{'persona': 'mae', 'tempo_segundos': 8.78} // Resposta llm
+{'persona': 'gestor', 'tempo_segundos': 10.83}
+{'persona': 'professor', 'tempo_segundos': 12.2}
+{'persona': 'outro', 'tempo_segundos': 8.22}
+

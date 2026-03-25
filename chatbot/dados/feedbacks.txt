@@ -1,0 +1,5 @@
+{'persona': 'pai', 'satisfacao': 'sim', 'comentario': 'Resposta clara e objetiva.'}
+{'persona': 'mae', 'satisfacao': 'sim', 'comentario': 'Respondeu corretamente a minha pergunta e enviou material complementar.'}
+{'persona': 'gestor', 'satisfacao': 'sim', 'comentario': 'Resposta objetiva, poderia melhorar a formatação.'}
+{'persona': 'professor', 'satisfacao': 'sim', 'comentario': 'O chat ofereceu uma resposta detalhada e adequada à pergunta.'}
+{'persona': 'outro', 'satisfacao': 'sim', 'comentario': 'Resposta adequada para o público geral.'}
