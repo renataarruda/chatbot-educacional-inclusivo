@@ -21,25 +21,25 @@ const labels = {
     pai:         "Pai",
     mae:         "Mãe",
     responsavel: "Responsável",
-    gestor:      "Gestor(a)",
-    professor:   "Professor(a)",
+    gestor:      "Gestor",
+    professor:   "Professor",
     outro:       "Outro",
 };
 
-const personaOpcoes = document.querySelector('#persona-opcoes');
-personaOpcoes.querySelectorAll('.persona-btn').forEach(btn => {
+document.querySelector('#persona-opcoes').querySelectorAll('.persona-btn').forEach(btn => {
     btn.addEventListener('click', () => selecionarPersona(btn.dataset.persona));
 });
 
 function selecionarPersona(persona) {
     personaSelecionada = persona;
+    const opcoes = document.querySelector('#persona-opcoes');
 
     const escolhaLabel = labels[persona] || persona;
     const userBubble = criaBolha("usuario");
     userBubble.textContent = escolhaLabel;
-    chat.insertBefore(userBubble, personaOpcoes);
+    chat.insertBefore(userBubble, opcoes);
 
-    personaOpcoes.remove();
+    opcoes.remove();
 
     const botBubble = criaBolha("bot");
     botBubble.innerHTML = mensagemBoasVindas(persona);
@@ -100,7 +100,6 @@ async function enviarMensagem() {
         setTimeout(() => abrirModal(), 1500);
         return;
     }
-
     const userBubble = criaBolha("usuario");
     userBubble.textContent = mensagem;
     chat.appendChild(userBubble);
@@ -223,12 +222,12 @@ function reiniciarChat() {
     novaPersonaOpcoes.className = "persona-opcoes";
     novaPersonaOpcoes.id = "persona-opcoes";
     novaPersonaOpcoes.innerHTML = `
-        <button class="persona-btn" data-persona="pai">Pai</button>
-        <button class="persona-btn" data-persona="mae">Mãe</button>
-        <button class="persona-btn" data-persona="responsavel">Responsável</button>
-        <button class="persona-btn" data-persona="gestor">Gestor(a)</button>
-        <button class="persona-btn" data-persona="professor">Professor(a)</button>
-        <button class="persona-btn" data-persona="outro">Outro</button>
+        <button class="persona-btn" data-persona="pai"> Pai</button>
+        <button class="persona-btn" data-persona="mae"> Mãe</button>
+        <button class="persona-btn" data-persona="responsavel"> Responsável</button>
+        <button class="persona-btn" data-persona="gestor"> Gestor(a)</button>
+        <button class="persona-btn" data-persona="professor"> Professor(a)</button>
+        <button class="persona-btn" data-persona="outro"> Outro</button>
     `;
     chat.appendChild(novaPersonaOpcoes);
 
@@ -241,7 +240,6 @@ function reiniciarChat() {
     botaoPaperclip.disabled = true;
     input.placeholder       = "Primeiro, escolha seu perfil acima...";
     input.value             = "";
-
     abrirFeedbackBtn.hidden = true;
 
     vaiParaFinal();
