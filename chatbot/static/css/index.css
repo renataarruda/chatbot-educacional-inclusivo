@@ -270,9 +270,6 @@ body {
     background-image: url(../img/icone-enviar.svg);
 }
 
-/* ── Colar no seu index.css, após os estilos existentes ── */
-
-/* Container dos botões de persona */
 .persona-opcoes {
     display: flex;
     flex-wrap: wrap;
@@ -281,7 +278,6 @@ body {
     padding-left: 0;
 }
 
-/* Cada botão de persona */
 .persona-btn {
     background-color: transparent;
     border: 2px solid var(--secondary);
@@ -310,7 +306,6 @@ body {
     box-shadow: none;
 }
 
-/* Campo de entrada e botões desabilitados (antes da persona ser escolhida) */
 .entrada__input:disabled {
     opacity: 0.45;
     cursor: not-allowed;
@@ -323,11 +318,6 @@ body {
     pointer-events: none;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Colar no final do seu index.css
-   ══════════════════════════════════════════════════════════════ */
-
-/* ── Botão de avaliação no cabeçalho ──────────────────────────── */
 .cabecalho__feedback {
     background-color: white;
     color: var(--primary);
@@ -349,7 +339,6 @@ body {
     color: white;
 }
 
-/* ── Botões de persona ────────────────────────────────────────── */
 .persona-opcoes {
     display: flex;
     flex-wrap: wrap;
@@ -386,7 +375,6 @@ body {
     box-shadow: none;
 }
 
-/* ── Estados desabilitados ────────────────────────────────────── */
 .entrada__input:disabled {
     opacity: 0.45;
     cursor: not-allowed;
@@ -399,7 +387,6 @@ body {
     pointer-events: none;
 }
 
-/* ── Modal overlay ────────────────────────────────────────────── */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -418,7 +405,6 @@ body {
     display: none;
 }
 
-/* ── Modal box ────────────────────────────────────────────────── */
 .modal {
     background: white;
     border-radius: var(--radius);
@@ -473,7 +459,6 @@ body {
     margin: 0;
 }
 
-/* ── Opções de satisfação ─────────────────────────────────────── */
 .modal__satisfacao {
     display: flex;
     gap: 0.75rem;
@@ -504,7 +489,6 @@ body {
     font-weight: 500;
 }
 
-/* ── Textarea de comentário ───────────────────────────────────── */
 .modal__comentario {
     width: 100%;
     resize: vertical;
@@ -531,7 +515,6 @@ body {
     color: #aaa;
 }
 
-/* ── Botão de enviar feedback ─────────────────────────────────── */
 .modal__enviar {
     background-color: var(--secondary);
     color: white;
@@ -552,7 +535,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* ── Mensagem de confirmação ──────────────────────────────────── */
 .modal__confirmacao {
     text-align: center;
     font-size: 1rem;

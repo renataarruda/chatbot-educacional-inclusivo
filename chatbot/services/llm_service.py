@@ -1,20 +1,17 @@
 import os
 import time
-import json
 import google.generativeai as genai
 from google.api_core.exceptions import ResourceExhausted, NotFound
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# ─── Configuração ────────────────────────────────────────────────
 CHAVE_API_GOOGLE = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=CHAVE_API_GOOGLE)
 
 MODELO_ESCOLHIDO = "gemini-3-flash-preview"
 MODO_DEBUG = os.getenv("MODO_DEBUG", "false").lower() == "true"
 
-# ─── Prompt do sistema ───────────────────────────────────────────
 PROMPT_SISTEMA = """Você é um assistente educacional especializado em educação inclusiva e superdotação.
 
 Seu objetivo é ajudar pais, professores e gestores escolares a compreender melhor questões relacionadas a altas habilidades, superdotação e inclusão educacional.
@@ -44,11 +41,12 @@ Adapte o tom conforme o sentimento detectado na mensagem:
 
 Não repita respostas, seções e títulos.
 
+Coloque uma quebra de linha entre seções e parágrafos, para melhorar a legibilidade.
+
 Sempre que apropriado, sugira que a pessoa procure profissionais especializados ou apoio pedagógico.
 
 Seu papel é oferecer orientação inicial, esclarecer dúvidas e ajudar o usuário a entender melhor a situação apresentada."""
 
-# ─── Materiais recomendados ──────────────────────────────────────
 MATERIAIS_RECOMENDADOS = {
     "superdotação": "📚 Saiba mais no portal do MEC: https://www.gov.br/mec/pt-br/pneei",
     "inclusão":     "📚 Referência sobre educação inclusiva — Instituto Rodrigo Mendes: https://institutorodrigomendes.org.br",
@@ -57,14 +55,12 @@ MATERIAIS_RECOMENDADOS = {
     "diversidade":  "📚 Portal DIVERSA — gestão escolar inclusiva: https://diversa.org.br/",
 }
 
-# ─── Respostas mock para debug ───────────────────────────────────
 RESPOSTAS_DEBUG = {
     "superdot": "**[DEBUG]** Alunos superdotados se beneficiam de atividades abertas e investigativas.\n\nAlguma outra dúvida?",
     "inclusão": "**[DEBUG]** A inclusão escolar envolve adaptar práticas pedagógicas para atender diferentes necessidades.\n\nAlguma outra dúvida?",
     "padrão":   "**[DEBUG]** Resposta genérica do assistente educacional.",
 }
 
-# ─── Perfis de usuário ───────────────────────────────────────────
 PERFIS = {
     "pai":        "pai",
     "mae":        "mãe",
@@ -74,7 +70,6 @@ PERFIS = {
     "outro":      "outro usuário",
 }
 
-# ─── Funções auxiliares ──────────────────────────────────────────
 def sugestao_material_complementar(pergunta: str) -> str | None:
     """Retorna um link de material complementar com base em palavras-chave da pergunta."""
     p = pergunta.lower()
@@ -147,8 +142,7 @@ def gerar_resposta(pergunta: str, persona: str) -> str:
             resposta += "\n\n" + material
 
         return resposta
-
-    # ── Modo real ────────────────────────────────────────────────
+    
     llm = criar_modelo()
     if not llm:
         return "Desculpe, ocorreu um erro ao conectar com o assistente. Tente novamente."

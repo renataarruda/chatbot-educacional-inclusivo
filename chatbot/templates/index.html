@@ -9,7 +9,6 @@
 <body>
     <header class="cabecalho container">
         <img src="{{ url_for('static', filename='img/logo-chatbot.svg') }}" alt="Logo Chatbot">
-        <!-- Botão de feedback — aparece após a persona ser escolhida -->
         <button class="cabecalho__feedback" id="abrir-feedback" hidden>
             Avaliar ✦
         </button>
@@ -25,12 +24,12 @@
             </p>
 
             <div class="persona-opcoes" id="persona-opcoes">
-                <button class="persona-btn" data-persona="pai">👨 Pai</button>
-                <button class="persona-btn" data-persona="mae">👩 Mãe</button>
-                <button class="persona-btn" data-persona="responsavel">👪 Responsável</button>
-                <button class="persona-btn" data-persona="gestor">🏫 Gestor</button>
-                <button class="persona-btn" data-persona="professor">📚 Professor</button>
-                <button class="persona-btn" data-persona="outro">🙋 Outro</button>
+                <button class="persona-btn" data-persona="pai">Pai</button>
+                <button class="persona-btn" data-persona="mae">Mãe</button>
+                <button class="persona-btn" data-persona="responsavel">Responsável</button>
+                <button class="persona-btn" data-persona="gestor">Gestor(a)</button>
+                <button class="persona-btn" data-persona="professor">Professor(a)</button>
+                <button class="persona-btn" data-persona="outro">Outro</button>
             </div>
         </section>
 
@@ -47,7 +46,6 @@
         </section>
     </main>
 
-    <!-- ── Modal de feedback ─────────────────────────────────────── -->
     <div class="modal-overlay" id="modal-feedback" hidden>
         <div class="modal">
             <button class="modal__fechar" id="fechar-feedback" aria-label="Fechar">✕</button>
@@ -63,13 +61,13 @@
             <textarea
                 class="modal__comentario"
                 id="comentario-feedback"
-                placeholder="Deixe um comentário ou sugestão (opcional)..."
+                placeholder="Deixe um comentário ou sugestão (opcional)"
                 rows="3"
             ></textarea>
 
             <button class="modal__enviar" id="enviar-feedback">Enviar avaliação</button>
             <p class="modal__confirmacao" id="confirmacao-feedback" hidden>
-                ✅ Obrigado pelo seu feedback!
+                ✅ Agradecemos pelo seu feedback!
             </p>
         </div>
     </div>
