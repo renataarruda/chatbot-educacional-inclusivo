@@ -1,12 +1,24 @@
-# Chatbot Educacional para Inclusão e Superdotação
+# SuperChat: Chatbot Educacional para Inclusão e Superdotação
 
 Este projeto tem como objetivo desenvolver um **chatbot educacional baseado em Inteligência Artificial** para o [**Instituto Criativo**](https://institutocriativo.com.br/), capaz de fornecer **orientações iniciais sobre educação inclusiva, altas habilidades e superdotação**.
 
 A solução busca apoiar **pais, professores e gestores escolares** no esclarecimento de dúvidas frequentes relacionadas à inclusão educacional, oferecendo respostas acessíveis, informativas e contextualizadas.
 
-O projeto está sendo desenvolvido como **Projeto Aplicado** do curso de Sistemas de Informação da **Faculdade XP Educação**, utilizando conceitos de **Design Thinking, Inteligência Artificial e desenvolvimento de software com Python**.
+O projeto foi desenvolvido como **Projeto Aplicado** do curso de Sistemas de Informação da **Faculdade XP Educação**, utilizando conceitos de **Design Thinking, Inteligência Artificial e desenvolvimento de software com Python**.
 
 Como apoio, este projeto segue algumas instruções sugeridas no curso [**Formação Gemini e Python**](https://www.alura.com.br/formacao-gemini-python), da Alura.
+
+---
+
+# 🚀 MVP – Versão Final
+
+O projeto evoluiu para um **MVP funcional com interface web**, permitindo interação mais próxima de um produto real.
+
+### 🔹 Interface do Chat (SuperChat)
+
+<img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/3ac5c0eb-e68e-423f-98c8-71a3a0069c86" />
+
+O chatbot foi nomeado **SuperChat**, com identidade visual baseada nas cores do Instituto Criativo e foco em uma experiência simples e acessível.
 
 ---
 
@@ -26,164 +38,232 @@ O chatbot **não realiza diagnósticos** e não substitui avaliação profission
 
 # Público-Alvo
 
-O chatbot foi projetado para três perfis principais de usuários:
+O chatbot foi projetado para quatro perfis principais de usuários:
 
-### Pais e responsáveis
-Pessoas que possuem dúvidas sobre comportamentos, desenvolvimento ou possíveis sinais de altas habilidades em crianças.
+- **Pais e responsáveis**
+- **Professores**
+- **Gestores escolares**
+- **Público geral (outros)**
 
-### Professores
-Educadores que buscam estratégias pedagógicas e orientações para lidar com alunos com diferentes necessidades educacionais.
-
-### Gestores escolares
-Profissionais responsáveis por decisões institucionais relacionadas à inclusão educacional.
+Cada perfil recebe respostas adaptadas em linguagem, nível de detalhe e abordagem.
 
 ---
 
 # Tecnologias Utilizadas
 
-Este projeto utiliza as seguintes tecnologias:
+- Python  
+- Flask (interface web)  
+- API de IA generativa (Google Gemini)  
+- Biblioteca `google-generativeai`  
+- `python-dotenv`  
 
-- Python
-- API de IA generativa (Google Gemini)
-- Biblioteca `google-generativeai`
-- `python-dotenv` para gerenciamento de variáveis de ambiente
+---
+# ▶️ Como rodar o projeto localmente
 
-O chatbot atualmente funciona por meio de uma **interface simples no terminal**, permitindo interação direta com o modelo de linguagem.
+Siga os passos abaixo para executar o projeto em sua máquina:
 
-Durante o desenvolvimento foi implementado também um **modo de depuração (debug)** com respostas simuladas (*mock responses*), permitindo testar a lógica do chatbot sem consumir tokens da API.
+## 1. Clonar o repositório
+
+```bash
+git clone https://github.com/renataarruda/chatbot-educacional-inclusivo.git
+cd chatbot-educacional-inclusivo
+```
+## 2. Criar e ativar o ambiente virtual
+### Windows
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+### Linux/Mac
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+## 3. Instalar as dependências
+```bash
+pip install -r requirements.txt
+```
+## 4. Configurar variáveis de ambiente
+
+Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+```bash
+GOOGLE_API_KEY=sua_chave_aqui
+```
+Você pode obter uma chave de API no Google AI Studio.
+
+## 5. Executar a aplicação
+```bash
+python app.py
+```
+
+## 6. Acessar no navegador
+
+Abra o navegador e acesse:
+```bash
+http://localhost:5000
+```
+
+# 🧪 Modo Debug (opcional)
+
+O projeto possui um modo de depuração que utiliza respostas simuladas (mock responses), permitindo testar o fluxo do chatbot sem consumir a API.
+
+Para ativar, ajuste a configuração no código conforme indicado no arquivo principal.
+
+# ⚠️ Possíveis problemas
+- **Erro de dependências:**
+Execute novamente pip install -r requirements.txt
+- **Erro de chave da API:**
+Verifique se o arquivo .env foi criado corretamente
+- **Problemas ao rodar no Windows:**
+Certifique-se de que o ambiente virtual está ativado
+
+# Funcionalidades do MVP
+
+- Seleção de persona diretamente no chat;  
+- Respostas personalizadas por perfil de usuário;  
+- Geração de respostas com IA (LLM);  
+- Sugestão de materiais complementares; 
+- Reset do chat após encerramento;  
+- Nova escolha de persona sem recarregar a aplicação;  
+- Coleta de feedback do usuário;  
+- Registro de tempo de resposta;  
+- Armazenamento de interações em arquivo.
 
 ---
 
 # Fluxo de Interação
 
-O chatbot segue o seguinte fluxo:
-
-1. Apresentação do assistente educacional
-2. Seleção do perfil do usuário (pais, professores ou gestores)
-3. Recebimento da pergunta
-4. Geração da resposta pelo modelo de IA ou pelo modo debug
-5. Sugestão de materiais complementares relacionados ao tema
-6. Continuação da conversa ou encerramento
-7. Coleta de feedback do usuário ao final da interação
+1. Apresentação do chatbot;
+2. Escolha da persona diretamente no chat;
+3. Envio da pergunta pelo usuário;
+4. Geração da resposta (LLM ou modo debug);
+5. Sugestão de material complementar;
+6. Encerramento da conversa;
+7. Coleta de feedback.
 
 ---
 
-# Monitoramento de Tokens e Estimativa de Custos
+# 📊 Resultados do MVP
 
-Durante o desenvolvimento do projeto foi implementado um script auxiliar para **monitoramento do consumo de tokens e estimativa de custo de utilização da API de IA**.
+## Tempo médio de resposta
 
-Essa etapa é importante para compreender o impacto financeiro do uso de modelos generativos em aplicações reais, especialmente em soluções escaláveis como chatbots.
+O tempo médio geral obtido foi de:
 
-O script realiza as seguintes funções:
+**➡️ 8,74 segundos por resposta**
 
-- consulta os **limites de tokens de entrada e saída dos modelos**
-- calcula a **quantidade de tokens utilizados em uma pergunta**
-- mede os **tokens consumidos na resposta**
-- estima o **custo aproximado da requisição**
+- Respostas simples (ex: saudação): ~5 segundos  
+- Respostas com IA: entre 8 e 12 segundos  
 
-Atualmente são analisados dois modelos da API Gemini:
-
-- `gemini-3-flash-preview` – modelo mais rápido e econômico
-- `gemini-3.1-pro-preview` – modelo mais robusto para respostas complexas
+Esse desempenho foi considerado adequado para um MVP baseado em modelo generativo.
 
 ---
 
-# Avaliação das Respostas
+## Testes piloto
 
-Para apoiar a análise da qualidade das respostas do chatbot foi desenvolvido um **script auxiliar de análise de sentimentos**.
+Foram realizados testes com usuários simulando diferentes perfis.
 
-Esse script lê um arquivo contendo **feedbacks de usuários** e utiliza um modelo de linguagem para gerar um resumo qualitativo das avaliações.
+### ✔️ Satisfação geral
+**100% dos usuários indicaram satisfação com as respostas**
 
-A análise inclui:
+### 💬 Principais feedbacks
 
-- resumo geral das avaliações;
-- classificação do sentimento geral (positivo, neutro ou negativo);
-- identificação de **pontos fortes** das respostas do chatbot;
-- identificação de **pontos de melhoria**.
+- “Resposta clara e objetiva.”  
+- “Respondeu corretamente e enviou material complementar.”  
+- “Resposta adequada ao público.”  
+- “Detalhada e bem estruturada.”  
 
-Como o chatbot ainda não possui usuários reais, foi criado também um **arquivo de feedbacks simulados**, utilizado para testar o funcionamento do analisador.
+### 🔍 Insights
 
----
-
-# Status do Projeto
-
-🚧 Projeto em desenvolvimento
-
-O desenvolvimento está organizado em **sprints semanais**, com foco na construção incremental de um MVP.
+- Boa adaptação da linguagem por persona;  
+- Material complementar como diferencial;  
+- Oportunidade de melhoria na formatação das respostas. 
 
 ---
 
-# Sprint 1 — Estruturação e Base Técnica
+# 🧪 Monitoramento de Tokens e Custos
 
-Objetivo: construir a base funcional do chatbot.
+Foi desenvolvido um script para:
 
-Atividades realizadas:
+- análise de consumo de tokens;  
+- comparação entre modelos;  
+- estimativa de custo por requisição .
 
-- definição dos fluxos conversacionais principais;
-- criação do **prompt base do assistente educacional**;
-- integração inicial com a **API de IA do Google Gemini**;
-- implementação de **interface simples de interação via terminal**;
-- criação de **modo debug com respostas simuladas** para testes;
-- organização do backlog do projeto.
+Modelos analisados:
 
----
-
-# Sprint 2 — Personalização e Avaliação das Respostas
-
-Objetivo: melhorar a contextualização das respostas e implementar mecanismos iniciais de avaliação da qualidade do chatbot.
-
-Atividades realizadas:
-
-- implementação de **identificação de perfil do usuário** (pais, professores ou gestores);
-- **personalização contextual do prompt** com base no perfil selecionado;
-- inclusão de **recomendações de materiais complementares** nas respostas;
-- implementação de **coleta de feedback ao final da interação** com o usuário;
-- desenvolvimento de **script de análise de sentimentos para avaliações**;
-- criação de **arquivo de feedbacks simulados** para testes do analisador;
-- realização de **testes de qualidade das respostas do chatbot**.
-
-Durante os testes foi identificado um comportamento ocasional de **repetição de seções e trechos nas respostas geradas pela LLM**, mesmo após ajustes no prompt. Esse comportamento foi registrado como uma limitação observada durante o desenvolvimento.
+- `gemini-3-flash-preview`  
+- `gemini-3.1-pro-preview`  
 
 ---
 
-# Próximos Passos
+# 📊 Avaliação das Respostas
 
-Sprint 3 – Finalização do MVP:
+Foi implementado um **analisador de sentimentos** para interpretar feedbacks dos usuários, incluindo:
 
-- Criar interface web simples;
-- Aplicar testes piloto;
-- Medir tempo médio de resposta;
-- Documentar MVP.
-
----
-
-# Limitações Conhecidas
-
-Por se tratar de um **MVP (Minimum Viable Product)** desenvolvido para fins acadêmicos, o chatbot apresenta algumas limitações conhecidas:
-
-### Comportamento ocasional de repetição nas respostas
-Durante os testes com o modelo de linguagem foi observado que, em alguns casos, a LLM pode repetir títulos, seções ou trechos da resposta. Ajustes no prompt foram realizados para reduzir esse comportamento, mas ele ainda pode ocorrer eventualmente.
-
-### Dependência de modelo generativo
-As respostas do chatbot são geradas por um modelo de linguagem. Apesar de utilizar instruções para priorizar clareza e responsabilidade informacional, o sistema pode produzir respostas incompletas ou imprecisas em determinados contextos.
-
-### Ausência de memória de conversação
-Nesta versão do projeto, o chatbot responde a cada pergunta de forma isolada, sem manter histórico completo de contexto entre interações.
-
-### Base de conhecimento não especializada
-O chatbot utiliza conhecimento geral do modelo de linguagem e não possui uma base de dados própria ou curadoria especializada integrada ao sistema.
-
-### Uso em ambiente de testes
-Atualmente o chatbot opera em **interface de terminal**, sendo utilizado principalmente para testes e validação do comportamento do sistema durante o desenvolvimento do MVP.
+- classificação de sentimento;  
+- identificação de pontos fortes;  
+- identificação de melhorias. 
 
 ---
 
-# Contribuições
+# 🧩 Sprints do Projeto
 
-Este projeto foi desenvolvido como parte de um **Projeto Aplicado acadêmico**, mas sugestões de melhorias e discussões sobre o tema são bem-vindas.
+## Sprint 1 — Base técnica
+- Integração com API Gemini  
+- Prompt inicial  
+- Interface em terminal  
+- Modo debug  
+
+## Sprint 2 — Personalização
+- Personas  
+- Ajuste de linguagem  
+- Feedback do usuário  
+- Análise de sentimentos  
+
+## Sprint 3 — MVP Web
+- Interface com Flask    
+- Testes piloto  
+- Medição de tempo de resposta  
+- Persistência de dados
+- Refatoração do código 
+
+---
+
+# ⚠️ Limitações
+
+- Formatação das respostas da LLM ainda limitada; 
+- Tempo de resposta pode ser otimizado;  
+- Ausência de memória de conversa;  
+- Dependência de modelo generativo;  
+- Base de conhecimento não especializada.  
+
+---
+
+# 🔮 Melhorias Futuras
+
+- Chat híbrido (respostas pré-definidas + IA);  
+- Melhor formatação das respostas;  
+- Redução do tempo de resposta; 
+- Acessibilidade (leitor de tela, envio de perguntas por áudio);  
+- Deploy estável e escalável.
+
+---
+
+# 💡 Considerações Finais
+
+O projeto demonstrou que a utilização de um chatbot com adaptação por personas é uma solução viável para apoiar a comunicação em contextos educacionais.
+
+Os resultados indicaram boa aceitação pelos usuários, com respostas consideradas claras, úteis e adequadas aos diferentes perfis. O MVP desenvolvido conseguiu validar os principais requisitos propostos, consolidando uma base funcional para evolução do sistema.
+
+Apesar das limitações técnicas identificadas, especialmente relacionadas à formatação das respostas e ao tempo de processamento, a solução apresenta potencial de expansão, tanto em termos de usabilidade quanto de impacto educacional.
+
+---
+
+# 📂 Repositório
+
+🔗 https://github.com/renataarruda/chatbot-educacional-inclusivo
 
 ---
 
 # Licença
 
-Este projeto possui finalidade **educacional e acadêmica**, sendo desenvolvido como parte de um Projeto Aplicado do curso de Sistemas de Informação.
+Projeto com finalidade **educacional e acadêmica**.
